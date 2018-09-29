@@ -1,0 +1,26 @@
+version: '3'
+
+volumes:
+  caddy_root: {}
+  caddy_etc: {}
+
+services:
+  caddy:
+    restart: always
+    image: wemakeservices/caddy-gen:latest
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - caddy_root:/root/.caddy
+      - caddy_etc:/etc/caddy
+    ports:
+      - '80:80'
+      - '443:443'
+
+  index:
+    restart: always
+    image: nginx:latest
+    labels:
+      - 'virtual.host=sites.async.fi'
+      - 'virtual.tls-email=hostmaster@async.fi'
+    volumes:
+      - ./sites.async.fi:/usr/share/nginx/html:ro
