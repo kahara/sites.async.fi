@@ -1,0 +1,3 @@
+[submodule "caddy-gen"]
+	path = caddy-gen
+	url = git@github.com:kahara/caddy-gen.git
