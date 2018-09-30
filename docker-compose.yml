@@ -24,3 +24,43 @@ services:
       - 'virtual.tls-email=hostmaster@async.fi'
     volumes:
       - ./sites.async.fi:/usr/share/nginx/html:ro
+
+  clock:
+    restart: always
+    image: nginx:latest
+    labels:
+      - 'virtual.host=clock.async.fi'
+      - 'virtual.tls-email=hostmaster@async.fi'
+    volumes:
+      - ./clock.async.fi:/usr/share/nginx/html:ro
+
+  oh2ewl:
+    restart: always
+    image: nginx:latest
+    labels:
+      - 'virtual.host=oh2ewl.async.fi'
+      - 'virtual.tls-email=hostmaster@async.fi'
+    volumes:
+      - ./oh2ewl.async.fi:/usr/share/nginx/html:ro
+
+  uuid:
+    restart: always
+    image: gunicorn:latest
+    build:
+      context: ./gunicorn/
+    labels:
+      - 'virtual.host=uuid.async.fi'
+      - 'virtual.tls-email=hostmaster@async.fi'
+    volumes:
+      - ./uuid.async.fi:/app:ro
+
+  ip:
+    restart: always
+    image: gunicorn:latest
+    build:
+      context: ./gunicorn/
+    labels:
+      - 'virtual.host=ip.async.fi'
+      - 'virtual.tls-email=hostmaster@async.fi'
+    volumes:
+      - ./ip.async.fi:/app:ro
