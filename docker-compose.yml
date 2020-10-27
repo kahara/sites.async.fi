@@ -3,8 +3,6 @@ version: '3'
 volumes:
   caddy_root: {}
   caddy_etc: {}
-  jenkins_home: {}
-  jenkins_logs: {}
 
 services:
   caddy:
@@ -55,24 +53,3 @@ services:
       - 'virtual.tls-email=hostmaster@async.fi'
     volumes:
       - ./uuid.async.fi:/app:ro
-
-  # ip:
-  #   restart: always
-  #   image: gunicorn:latest
-  #   build:
-  #     context: ./gunicorn/
-  #   labels:
-  #     - 'virtual.host=ip.async.fi'
-  #     - 'virtual.tls-email=hostmaster@async.fi'
-  #   volumes:
-  #     - ./ip.async.fi:/app:ro
-
-  # jenkins:
-  #   restart: always
-  #   image: jenkinsci/blueocean
-  #   labels:
-  #     - 'virtual.host=jenkins.async.fi'
-  #     - 'virtual.tls-email=hostmaster@async.fi'
-  #   volumes:
-  #     - jenkins_home:/var/jenkins_home
-  #     - jenkins_logs:/var/log/jenkins
