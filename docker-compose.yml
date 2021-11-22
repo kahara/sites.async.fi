@@ -53,3 +53,11 @@ services:
       - 'virtual.tls-email=hostmaster@async.fi'
     volumes:
       - ./uuid.async.fi:/app:ro
+
+  echo:
+    restart: always
+    image: gcr.io/google-containers/echoserver:1.8
+    labels:
+      - 'virtual.host=echo.async.fi'
+      - 'virtual.tls-email=hostmaster@async.fi'
+      - 'virtual.port=8080'
