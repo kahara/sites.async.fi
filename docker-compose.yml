@@ -61,3 +61,12 @@ services:
       - 'virtual.host=echo.async.fi'
       - 'virtual.tls-email=hostmaster@async.fi'
       - 'virtual.port=8080'
+
+  past:
+    restart: always
+    image: nginx:latest
+    labels:
+      - 'virtual.host=past.async.fi'
+      - 'virtual.tls-email=hostmaster@async.fi'
+    volumes:
+      - ./past.async.fi:/usr/share/nginx/html:ro
