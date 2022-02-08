@@ -25,6 +25,14 @@ services:
     volumes:
       - ./sites.async.fi:/usr/share/nginx/html:ro
 
+  www:
+    restart: always
+    image: jonikahara/www-async-fi:latest
+    labels:
+      - 'virtual.host=async.fi'
+      - 'virtual.tls-email=hostmaster@async.fi'
+      - 'virtual.port=80'
+
   clock:
     restart: always
     image: nginx:latest
