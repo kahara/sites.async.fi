@@ -49,6 +49,15 @@ services:
     volumes:
       - ./oh2ewl.async.fi:/usr/share/nginx/html:ro
 
+  beacon:
+    restart: always
+    image: nginx:latest
+    labels:
+      - 'virtual.host=beacon.async.fi'
+      - 'virtual.tls-email=hostmaster@async.fi'
+    volumes:
+      - ./beacon.async.fi:/usr/share/nginx/html:ro
+
   uuid:
     restart: always
     image: gunicorn:latest
