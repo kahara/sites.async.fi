@@ -1,0 +1,77 @@
+networks:
+  proxy:
+
+volumes:
+  caddy_config:
+  caddy_data:
+
+services:
+  caddy:
+    restart: always
+    image: caddy:2.8-alpine
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy_config:/config
+      - caddy_data:/data
+    networks:
+      - proxy
+    ports:
+      - '80:80'
+      - '443:443'
+
+  # FIXME: use Caddy for the static file servings below, too
+
+  sites:
+    restart: always
+    image: nginx:1.26
+    volumes:
+      - ./sites.async.fi:/usr/share/nginx/html:ro
+    networks:
+      - proxy
+
+  www:
+    restart: always
+    image: jonikahara/www-async-fi:latest
+    networks:
+      - proxy
+
+  clock:
+    restart: always
+    image: nginx:1.26
+    volumes:
+      - ./clock.async.fi:/usr/share/nginx/html:ro
+    networks:
+      - proxy
+
+  oh2ewl:
+    restart: always
+    image: nginx:1.26
+    volumes:
+      - ./oh2ewl.async.fi:/usr/share/nginx/html:ro
+    networks:
+      - proxy
+
+  beacon:
+    restart: always
+    image: nginx:1.26
+    volumes:
+      - ./beacon.async.fi:/usr/share/nginx/html:ro
+    networks:
+      - proxy
+
+  uuid:
+    restart: always
+    build:
+      context: ./gunicorn
+    volumes:
+      - ./uuid.async.fi:/app:ro
+    networks:
+      - proxy
+
+  past:
+    restart: always
+    image: nginx:1.26
+    volumes:
+      - ./past.async.fi:/usr/share/nginx/html:ro
+    networks:
+      - proxy

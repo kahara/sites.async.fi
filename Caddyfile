@@ -1,0 +1,77 @@
+async.fi {
+  tls hostmaster@async.fi
+  reverse_proxy  {
+    lb_policy round_robin
+    to www:80
+  }
+  encode zstd gzip
+  log {
+    output stdout
+  }
+}
+clock.async.fi {
+  tls hostmaster@async.fi
+  reverse_proxy  {
+    lb_policy round_robin
+    to clock:80
+  }
+  encode zstd gzip
+  log {
+    output stdout
+  }
+}
+oh2ewl.async.fi {
+  tls hostmaster@async.fi
+  reverse_proxy  {
+    lb_policy round_robin
+    to oh2ewl:80
+  }
+  encode zstd gzip
+  log {
+    output stdout
+  }
+}
+beacon.async.fi {
+  tls hostmaster@async.fi
+  reverse_proxy  {
+    lb_policy round_robin
+    to beacon:80
+  }
+  encode zstd gzip
+  log {
+    output stdout
+  }
+}
+past.async.fi {
+  tls hostmaster@async.fi
+  reverse_proxy  {
+    lb_policy round_robin
+    to past:80
+  }
+  encode zstd gzip
+  log {
+    output stdout
+  }
+}
+sites.async.fi {
+  tls hostmaster@async.fi
+  reverse_proxy  {
+    lb_policy round_robin
+    to sites:80
+  }
+  encode zstd gzip
+  log {
+    output stdout
+  }
+}
+uuid.async.fi {
+  tls hostmaster@async.fi
+  reverse_proxy  {
+    lb_policy round_robin
+    to uuid:80
+  }
+  encode zstd gzip
+  log {
+    output stdout
+  }
+}
