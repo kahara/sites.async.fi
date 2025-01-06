@@ -75,3 +75,14 @@ uuid.async.fi {
     output stdout
   }
 }
+spotlog.async.fi {
+  tls hostmaster@async.fi
+  reverse_proxy  {
+    lb_policy round_robin
+    to spotlog.async.fi:8071  # no host.docker.internal for us
+  }
+  encode zstd gzip
+  log {
+    output stdout
+  }
+}
