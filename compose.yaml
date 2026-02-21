@@ -80,3 +80,9 @@ services:
       - ./past.async.fi:/usr/share/nginx/html:ro
     networks:
       - proxy
+
+  cultrix:
+    restart: always
+    image: cultrix:latest
+    networks:
+      - proxy

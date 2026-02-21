@@ -86,3 +86,14 @@ spotlog.async.fi {
     output stdout
   }
 }
+cultrix.async.fi {
+  tls hostmaster@async.fi
+  reverse_proxy  {
+    lb_policy round_robin
+    to cultrix:8080
+  }
+  encode zstd gzip
+  log {
+    output stdout
+  }
+}
