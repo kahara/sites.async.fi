@@ -8,7 +8,7 @@ volumes:
 services:
   caddy:
     restart: always
-    image: caddy:2.8-alpine
+    image: caddy:2.11.4-alpine
     logging:
       driver: json-file
       options:
@@ -28,7 +28,7 @@ services:
 
   sites:
     restart: always
-    image: nginx:1.26
+    image: nginx:1
     volumes:
       - ./sites.async.fi:/usr/share/nginx/html:ro
     networks:
@@ -42,7 +42,7 @@ services:
 
   clock:
     restart: always
-    image: nginx:1.26
+    image: nginx:1
     volumes:
       - ./clock.async.fi:/usr/share/nginx/html:ro
     networks:
@@ -50,7 +50,7 @@ services:
 
   oh2ewl:
     restart: always
-    image: nginx:1.26
+    image: nginx:1
     volumes:
       - ./oh2ewl.async.fi:/usr/share/nginx/html:ro
     networks:
@@ -58,7 +58,7 @@ services:
 
   beacon:
     restart: always
-    image: nginx:1.26
+    image: nginx:1
     volumes:
       - ./beacon.async.fi:/usr/share/nginx/html:ro
     networks:
@@ -75,7 +75,7 @@ services:
 
   past:
     restart: always
-    image: nginx:1.26
+    image: nginx:1
     volumes:
       - ./past.async.fi:/usr/share/nginx/html:ro
     networks:
